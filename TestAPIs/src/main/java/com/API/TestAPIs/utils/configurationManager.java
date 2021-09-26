@@ -1,7 +1,10 @@
 package com.API.TestAPIs.utils;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Properties;
 
 public class configurationManager {
@@ -10,8 +13,7 @@ public class configurationManager {
 	private static final Properties prop = new Properties();
 	
 	private configurationManager() throws IOException {
-		
-		InputStream inputStream = configurationManager.class.getResourceAsStream("../resource/config.properties");
+		InputStream inputStream = getClass().getClassLoader().getResourceAsStream("config.properties");
 		prop.load(inputStream);
 	}
 	
@@ -19,7 +21,6 @@ public class configurationManager {
 		if(manager == null) {
 			synchronized (configurationManager.class) {
 				try {
-					System.out.println(1);
 					manager = new configurationManager();
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -30,8 +31,8 @@ public class configurationManager {
 	}
 	
 	public String getString(String key) {
-		System.out.println(prop);
-		return System.getProperty(key, prop.getProperty(key));
+//		System.out.println(prop.getProperty(key));
+		return prop.getProperty(key);
 	}
 	
 	
