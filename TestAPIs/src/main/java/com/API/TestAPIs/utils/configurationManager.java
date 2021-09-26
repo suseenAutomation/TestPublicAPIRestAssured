@@ -1,4 +1,4 @@
-package com.publicAPI.TestAPIs.utils;
+package com.API.TestAPIs.utils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,6 +19,7 @@ public class configurationManager {
 		if(manager == null) {
 			synchronized (configurationManager.class) {
 				try {
+					System.out.println(1);
 					manager = new configurationManager();
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -29,6 +30,7 @@ public class configurationManager {
 	}
 	
 	public String getString(String key) {
+		System.out.println(prop);
 		return System.getProperty(key, prop.getProperty(key));
 	}
 	
