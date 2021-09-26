@@ -16,13 +16,23 @@ public class TestGETWeather {
 		GetOpenWeatherAPIHelper = new GetOpenWeatherAPIHelper();
 	}
 	
-	@Test
-	public void test1() {
-
+	@Test(groups = {"smokeTest"}, priority=1)
+	public void test_getWeatherByCity() {
 		Response response = GetOpenWeatherAPIHelper.getWeatherByCity("London");
 		Assert.assertEquals(response.getStatusCode(), 200);
 	}
-	
+
+	@Test(groups = {"regressionTest"}, dependsOnGroups = {"smokeTest"}, priority=2)
+	public void test_getWeatherByCoordinate() {
+		Response response = GetOpenWeatherAPIHelper.getWeatherByCoordinate(35, 139);
+		Assert.assertEquals(response.getStatusCode(), 200);
+	}
+
+	@Test(groups = {"regressionTest"}, dependsOnGroups = {"smokeTest"}, priority=3)
+	public void test_getWeatherByZipCode() {
+		Response response = GetOpenWeatherAPIHelper.getWeatherByZipCode(94040);
+		Assert.assertEquals(response.getStatusCode(), 200);
+	}
 	
 
 }

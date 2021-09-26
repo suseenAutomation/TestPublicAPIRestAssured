@@ -22,4 +22,16 @@ public class GetOpenWeatherAPIHelper {
         return httpRequest.when().get();
     }
 
+    public Response getWeatherByCoordinate(int latitude, int longitude){
+        RequestSpecification httpRequest = RestAssured.given();
+        httpRequest.queryParams("lat",latitude,"lon",longitude,"appid",API_KEY);
+        return httpRequest.when().get();
+    }
+
+    public Response getWeatherByZipCode(int zipCode){
+        RequestSpecification httpRequest = RestAssured.given();
+        httpRequest.queryParams("zip", zipCode,"appid",API_KEY);
+        return httpRequest.when().get();
+    }
+
 }

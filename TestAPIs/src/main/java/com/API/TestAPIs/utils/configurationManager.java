@@ -31,7 +31,6 @@ public class configurationManager {
 	}
 	
 	public String getString(String key) {
-//		System.out.println(prop.getProperty(key));
 		return prop.getProperty(key);
 	}
 	
